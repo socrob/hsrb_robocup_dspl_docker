@@ -1,10 +1,3 @@
-About the HSR
---------------------
-
-Please refer to the following to obtain information about Human Support Robot (HSR) and use it in your paper.
-
-https://robomechjournal.springeropen.com/articles/10.1186/s40648-019-0132-3
-
 docker installation
 --------------------
 
@@ -44,59 +37,38 @@ $ sudo wget https://github.com/docker/compose/releases/download/${COMPOSE_VERSIO
 $ sudo chmod 755 /usr/local/bin/docker-compose
 ```
 
-Usage
+Setup and Usage
 ------
 
-Please input the following commands to clone this repository.
+Start by cloning and building the repository with TIAGo simulation:
 
 ```sh
-$ git clone --recursive https://github.com/hsr-project/hsrb_robocup_dspl_docker.git
-$ cd hsrb_robocup_dspl_docker
+$ git clone --recursive https://github.com/socrob/tiago_robocup_opl_binary.git
+$ cd tiago_robocup_opl_binary
+$ sudo ./build.sh
 ```
 
-Download all of the images necessary for running the simulator.
-As you will be downloading a large amount of data,
-please execute the following command in an environment that is connected to a high speed network.
+Then clone the SocRob fork of the RoboCup 2021 official docker configuration repository:
 
 ```sh
+$ git clone --recursive https://github.com/socrob/tiago_robocup_opl_docker.git
+```
+
+Download all of the images necessary for running the full simulated environment.
+
+```sh
+$ cd tiago_robocup_opl_docker
 $ docker-compose pull
 ```
 
 Starting the simulator
 ----------------------
 
-Please input the following command and start the simulator.
+Please input the following commands and start the simulator.
 
 ```sh
+$ cd tiago_robocup_opl_docker
 $ docker-compose up
-```
-
-Please open each of the following URLs in a browser, then move on to development.
-
-- The simulator's screen http://localhost:3000
-- IDE http://localhost:3001
-- jupyter notebook http://localhost:3002
-
-Starting the simulator in an environment with a GPU
----------------------------------------------------
-
-If it is the case that there is an NVIDIA video card, then acceleration of the simulation through rendering on the GPU is possible.
-
-First, please install nvidia-docker by referring to the following URL:
-
-https://github.com/NVIDIA/nvidia-docker
-
-Next, perform rendering on display number 0 of the X server that was started up on the server.
-Please input the following command, to to give access from within docker to the X server.
-
-```sh
-$ DISPLAY=:0 xhost si:localuser:root
-```
-
-Please input the following command and start the simulator.
-
-```sh
-$ docker-compose -f docker-compose.nvidia.yml up
 ```
 
 Please open each of the following URLs in a browser, then move on to development.
@@ -118,15 +90,3 @@ $ source ./set-rosmaster.sh
 ```
 
 After starting the simulator, please check that ROS communication is working using the host PC.
-
-Authors
----------------
- * Yosuke Matsusaka
-
-Contact
----------------
- * HSR Support <xr-hsr-support@mail.toyota.co.jp>
-
-LICENSE
----------------
-This software is released under the BSD 3-Clause Clear License, see LICENSE.txt.
