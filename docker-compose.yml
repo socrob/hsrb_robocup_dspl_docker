@@ -40,7 +40,7 @@ services:
   simulator:
     #image: ghcr.io/hsr-project/hsrb_robocup_dspl_binary:latest
     #image: ghcr.io/hsr-project/mbot_robocup_dspl_binary:latest
-    image: ghcr.io/socrob/tiago_robocup_opl_binary:latest
+    image: socrob/tiago_robocup_opl_binary:latest
     ipc: host
     security_opt:
       - seccomp:unconfined
